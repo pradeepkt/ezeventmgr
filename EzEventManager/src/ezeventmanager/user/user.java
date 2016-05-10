@@ -3,20 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ezeventmanager;
+package ezeventmanager.user;
 
+import ezeventmanager.utils.Contact;
 /**
  *
  * @author t.pradeepkumar
  */
-public class EzEventManager {
-
+public interface user {
+    
     /**
-     * @param args the command line arguments
+     * Contact
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        System.out.println("Success");
-    }
+    public Contact _userContact = new Contact();
     
 }
