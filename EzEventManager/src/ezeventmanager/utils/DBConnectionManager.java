@@ -79,13 +79,14 @@ public class DBConnectionManager {
                     stmt.close();
                 }
             } catch (SQLException se2) {
+                System.out.println(se2.getMessage());
             }// nothing we can do
             try {
                 if (conn != null) {
                     conn.close();
                 }
             } catch (SQLException se) {
-                se.printStackTrace();
+                System.out.println(se.getMessage());
             }//end finally try
         }//end try
         System.out.println("Goodbye!");
