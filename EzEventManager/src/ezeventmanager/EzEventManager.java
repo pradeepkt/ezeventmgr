@@ -5,6 +5,8 @@
  */
 package ezeventmanager;
 
+import ezeventmanager.utils.DBConnectionManager;
+
 /**
  *
  * @author t.pradeepkumar
@@ -16,6 +18,7 @@ public class EzEventManager {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        DBConnectionManager.connectToDB();
         System.out.println("Success");
     }
     

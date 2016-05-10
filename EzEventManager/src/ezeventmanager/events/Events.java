@@ -5,10 +5,18 @@
  */
 package ezeventmanager.events;
 
+import java.time.LocalDateTime;
+
 /**
  *
  * @author t.pradeepkumar
  */
 public interface Events {
+    
+    /**
+     * Allows scheduling an event
+     * @param timeStart Start the time
+     */
+    void scheduleEvent(LocalDateTime timeStart);
     
 }
