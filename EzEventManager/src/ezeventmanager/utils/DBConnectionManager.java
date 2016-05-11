@@ -68,10 +68,10 @@ public class DBConnectionManager {
             conn.close();
         } catch (SQLException se) {
             //Handle errors for JDBC
-            se.printStackTrace();
+            System.out.println(se.getMessage());
         } catch (Exception e) {
             //Handle errors for Class.forName
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         } finally {
             //finally block used to close resources
             try {
