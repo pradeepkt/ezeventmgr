@@ -5,6 +5,7 @@
  */
 package ezeventmanager.events;
 
+import ezeventmanager.user.User;
 import java.time.LocalDateTime;
 
 /**
@@ -12,6 +13,11 @@ import java.time.LocalDateTime;
  * @author t.pradeepkumar
  */
 public abstract class EventsImpl implements Events {
+    
+    /**
+     * Organizer
+     */
+    protected User organizer ;
     
     @Override
     public void scheduleEvent(LocalDateTime timeStart)

@@ -10,7 +10,7 @@ import ezeventmanager.utils.Contact;
  *
  * @author t.pradeepkumar
  */
-public interface user {
+public interface User {
     
     /**
      * Contact
