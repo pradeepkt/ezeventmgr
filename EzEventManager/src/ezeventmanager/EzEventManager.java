@@ -5,6 +5,7 @@
  */
 package ezeventmanager;
 
+import ezeventmanager.utils.Contact;
 import ezeventmanager.utils.DBConnectionManager;
 
 /**
@@ -18,7 +19,10 @@ public class EzEventManager {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        DBConnectionManager.connectToDB();
+        Contact myContact = new Contact(1L);
+        myContact.setAddressHome("Madurai");
+        myContact.persist();
+        System.out.println(myContact.toString());
         System.out.println("Success");
     }
     

@@ -14,13 +14,61 @@ import java.sql.*;
 public class DBConnectionManager {
     // JDBC driver name and database URL
 
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/EzEvents";
+    /**
+     * Used for insert queries
+     * @param insertQuery
+     * @return 
+     */
+    public static long persist(String insertQuery)
+    {
+        
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            //STEP 2: Register JDBC driver
+            Class.forName(Constants.JDBC_DRIVER);
 
-    //  Database credentials
-    static final String USER = "root";
-    static final String PASS = "root";
+            //STEP 3: Open a connection
+            System.out.println("Connecting to database...");
+            conn = DriverManager.getConnection(Constants.DB_URL, Constants.DB_USER, 
+                    Constants.DB_PASS);
 
+            //STEP 4: Execute a query
+            System.out.println("Creating statement...");
+            stmt = conn.createStatement();
+            int result = stmt.executeUpdate(insertQuery);
+
+            //STEP 6: Clean-up environment
+            stmt.close();
+            conn.close();
+            return Constants.SUCCESS;
+        } catch (SQLException se) {
+            //Handle errors for JDBC
+            System.out.println(se.getMessage());
+        } catch (Exception e) {
+            //Handle errors for Class.forName
+            System.out.println(e.getMessage());
+        } finally {
+            //finally block used to close resources
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (SQLException se2) {
+                System.out.println(se2.getMessage());
+            }// nothing we can do
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException se) {
+                System.out.println(se.getMessage());
+            }//end finally try
+        }//end try
+        System.out.println("Goodbye!");
+        return Constants.DB_CONN_ERR;
+    }
+    
     /**
      * 
      */
@@ -29,11 +77,12 @@ public class DBConnectionManager {
         Statement stmt = null;
         try {
             //STEP 2: Register JDBC driver
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName(Constants.JDBC_DRIVER);
 
             //STEP 3: Open a connection
             System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            conn = DriverManager.getConnection(Constants.DB_URL, Constants.DB_USER, 
+                    Constants.DB_PASS);
 
             //STEP 4: Execute a query
             System.out.println("Creating statement...");
