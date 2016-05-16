@@ -5,10 +5,13 @@
  */
 package ezeventmanager.eventmanager;
 
+import ezeventmanager.utils.Contact;
+import java.util.ArrayList;
+
 /**
  *
  * @author t.pradeepkumar
  */
 public interface EventManager {
-    
+
 }

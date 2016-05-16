@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author t.pradeepkumar
  */
-public class VendorUser implements user{
+public class VendorUser implements User{
     
     /**
      * Vendor Roles

@@ -7,6 +7,7 @@ package ezeventmanager.eventmanager;
 
 import ezeventmanager.events.*;
 import ezeventmanager.user.*;
+import ezeventmanager.utils.Contact;
 import java.util.ArrayList;
 
 /**
@@ -14,15 +15,16 @@ import java.util.ArrayList;
  * @author t.pradeepkumar
  */
 public abstract class EventManagerImpl implements EventManager {
-    
+
     /**
      * List of Events to be managed
      */
     protected ArrayList<Events> eventList = new ArrayList<>();
-    
+
     /**
      * List of users associated with events
      */
     protected ArrayList<User> userList = new ArrayList<>();
-    
+
+
 }

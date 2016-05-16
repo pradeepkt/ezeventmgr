@@ -5,7 +5,6 @@
  */
 package ezeventmanager.utils;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.LocalAttribute;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;

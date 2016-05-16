@@ -9,7 +9,7 @@ package ezeventmanager.user;
  *
  * @author t.pradeepkumar
  */
-public abstract class UserImpl implements user {
+public abstract class UserImpl implements User {
     
     
 }

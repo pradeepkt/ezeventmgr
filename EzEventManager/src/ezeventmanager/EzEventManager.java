@@ -6,7 +6,8 @@
 package ezeventmanager;
 
 import ezeventmanager.utils.Contact;
-import ezeventmanager.utils.DBConnectionManager;
+import ezeventmanager.utils.EzeventUtils;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,11 +20,16 @@ public class EzEventManager {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Contact myContact = new Contact(1L);
-        myContact.setAddressHome("Madurai");
+        Contact myContact = new Contact(2L, "Jerry", "jerry@ezevents.com", "1111111111", "1111111111",
+                "Address_Off", "Address_Home");
         myContact.persist();
-        System.out.println(myContact.toString());
+        
+        ArrayList<Contact> allList = EzeventUtils.getAllContacts();
+        for (int i = 0; i < allList.size(); ++i)
+        {
+            System.out.println(allList.get(i).toString());
+        }
         System.out.println("Success");
     }
-    
+
 }
