@@ -131,6 +131,29 @@ public abstract class UserImpl implements User {
     }
 
     /**
+     * Vendor Id
+     */
+    private long _vendorId;
+    
+    /**
+     * Get vendor Id
+     * @return
+     */
+    @Override
+    public long getVendorId()
+    {
+        return _vendorId;
+    }
+    
+    /**
+     * Set the vendor Id
+     * @param vendor 
+     */
+    public void setVendorId(long vendor)
+    {
+        _vendorId = vendor;
+    }
+    /**
      * Get the role string
      *
      * @param role
@@ -186,15 +209,16 @@ public abstract class UserImpl implements User {
     @Override
     public long persist() {
         String insertQuery = "INSERT INTO `EzEvents`.`User`"
-                + "(`idUser`,`contactID`,`listEvents`,`userRole`) "
+                + "(`idUser`,`contactID`,`listEvents`,`userRole`,'vendorID') "
                 + "VALUES (" + _userId + ",'" + _userContact.getId() + "','" + _eventLists + "','"
-                + getRoleString(_role) + "') "
+                + getRoleString(_role) + "', '" + _vendorId + "')"
                 + " on duplicate key update "
                 + "idUser=" + _userId + ","
                 + "contactID='" + _userContact.getId() + "',"
                 + "listEvents='" + _eventLists + "',"
-                + "userRole='" + getRoleString(_role) + "'";
-        System.out.println("Insert query is " + insertQuery);
+                + "userRole='" + getRoleString(_role) + "'"
+                + "vendorId=" + _vendorId;
+        //System.out.println("Insert query is " + insertQuery);
         return DBConnectionManager.persist(insertQuery);
     }
 }

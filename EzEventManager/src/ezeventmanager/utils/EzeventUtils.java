@@ -5,8 +5,10 @@
  */
 package ezeventmanager.utils;
 
+import ezeventmanager.user.CorporateUser;
 import ezeventmanager.user.Customer;
 import ezeventmanager.user.User;
+import ezeventmanager.user.VendorUser;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -38,12 +40,12 @@ public class EzeventUtils {
             Class.forName(Constants.JDBC_DRIVER);
 
             //STEP 3: Open a connection
-            System.out.println("Connecting to database...");
+            //System.out.println("Connecting to database...");
             conn = DriverManager.getConnection(Constants.DB_URL, Constants.DB_USER,
                     Constants.DB_PASS);
 
             //STEP 4: Execute a query
-            System.out.println("Creating statement...");
+            //System.out.println("Creating statement...");
             stmt = conn.createStatement();
             String sql;
             sql = "SELECT * FROM Contact ;";
@@ -60,7 +62,7 @@ public class EzeventUtils {
                     tobeAdded.setPhone(rs.getString("phone"));
                     tobeAdded.setAddressOffice(rs.getString("addressoffice"));
                     tobeAdded.setAddressHome(rs.getString("addresshome"));
-                    
+
                     //Add to the list
                     theList.add(tobeAdded);
                 }
@@ -72,9 +74,8 @@ public class EzeventUtils {
         } catch (SQLException | ClassNotFoundException se) {
             //Handle errors for JDBC
             System.out.println(se.getMessage());
-        }
-        //Handle errors for Class.forName
-         finally {
+        } //Handle errors for Class.forName
+        finally {
             //finally block used to close resources
             try {
                 if (stmt != null) {
@@ -91,7 +92,7 @@ public class EzeventUtils {
                 System.out.println(se.getMessage());
             }//end finally try
         }//end try
-        System.out.println("Goodbye!");
+        //System.out.println("Goodbye!");
         return null;
     }
 
@@ -113,12 +114,12 @@ public class EzeventUtils {
             Class.forName(Constants.JDBC_DRIVER);
 
             //STEP 3: Open a connection
-            System.out.println("Connecting to database...");
+            //System.out.println("Connecting to database...");
             conn = DriverManager.getConnection(Constants.DB_URL, Constants.DB_USER,
                     Constants.DB_PASS);
 
             //STEP 4: Execute a query
-            System.out.println("Creating statement...");
+            //System.out.println("Creating statement...");
             stmt = conn.createStatement();
             String sql;
             sql = "SELECT * FROM User ;";
@@ -132,12 +133,17 @@ public class EzeventUtils {
                         switch (role) {
                             case "CUSTOMER":
                                 tobeAdded = new Customer();
+                                break;
+                            case "VENDOR":
+                                tobeAdded = new VendorUser();
+                                break;
+                            case "CORPORATE":
+                                tobeAdded = new CorporateUser();
+                                break;
                             default:
                                 tobeAdded = new Customer();
                         }
-                    }
-                    else
-                    {
+                    } else {
                         tobeAdded = new Customer();
                     }
                     Contact userContact = new Contact();
@@ -146,6 +152,7 @@ public class EzeventUtils {
                     tobeAdded.setUserId(rs.getLong("iduser"));
                     tobeAdded.setEventLists(rs.getString("listEvents"));
                     tobeAdded.setRole(tobeAdded.getRoleFromString(rs.getString("userRole")));
+                    tobeAdded.setVendorId(rs.getLong("vendorid"));
                     //Add to the list
                     theList.add(tobeAdded);
                 }
@@ -157,9 +164,8 @@ public class EzeventUtils {
         } catch (SQLException | ClassNotFoundException se) {
             //Handle errors for JDBC
             System.out.println(se.getMessage());
-        }
-        //Handle errors for Class.forName
-         finally {
+        } //Handle errors for Class.forName
+        finally {
             //finally block used to close resources
             try {
                 if (stmt != null) {
@@ -176,7 +182,7 @@ public class EzeventUtils {
                 System.out.println(se.getMessage());
             }//end finally try
         }//end try
-        System.out.println("Goodbye!");
+        //System.out.println("Goodbye!");
         return null;
     }
 

@@ -11,4 +11,21 @@ package ezeventmanager.vendor;
  */
 public interface Vendor {
     
+    /**
+     * User roles
+     */
+    public enum VendorBusiness {
+        TRAVEL_AIR,
+        CATERING,
+        CORPORATE_GIFTS,
+        FLORIST,
+        GIFTS,
+        GIFTS_KIDS,
+        GIFTS_PERSONAL,
+        STAY,
+        TRAVEL_SURFACE,
+        TRANSPORTS,
+        INVALID
+    }
+
 }

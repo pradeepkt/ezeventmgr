@@ -44,5 +44,9 @@ public interface User {
     public String getRoleString(UserRole role);
     
     public UserRole getRoleFromString(String role);
+    
+    public long getVendorId();
+    
+    public void setVendorId(long vendor);
 
 }
