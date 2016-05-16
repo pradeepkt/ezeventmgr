@@ -5,10 +5,13 @@
  */
 package ezeventmanager.user;
 
+import ezeventmanager.utils.Contact;
+
 /**
  *
  * @author t.pradeepkumar
  */
 public class Customer extends UserImpl {
     
+
 }

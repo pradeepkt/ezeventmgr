@@ -6,15 +6,43 @@
 package ezeventmanager.user;
 
 import ezeventmanager.utils.Contact;
+
 /**
  *
  * @author t.pradeepkumar
  */
 public interface User {
-    
+
     /**
-     * Contact
+     * User roles
      */
-    public Contact _userContact = new Contact();
+    public enum UserRole {
+        CUSTOMER,
+        VENDOR,
+        CORPORATE,
+        INVALID
+    }
+
+    public long getUserId();
+
+    public Contact getContact();
+
+    public UserRole getRole();
+
+    public void setContact(Contact cont);
+
+    public void setRole(UserRole rl);
+
+    public void setUserId(long uid);
     
+    public long persist();
+    
+    public String getEventLists();
+    
+    public void setEventLists(String evList);
+    
+    public String getRoleString(UserRole role);
+    
+    public UserRole getRoleFromString(String role);
+
 }

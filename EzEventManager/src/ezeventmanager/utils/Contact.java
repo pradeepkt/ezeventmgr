@@ -146,6 +146,21 @@ public class Contact {
         _addressOffice = addr_off;
         _addressHome = addr_home;
     }
+    
+    /**
+     * Cloning constructor
+     * @param cont 
+     */
+    public Contact(Contact cont)
+    {
+        _id = cont.getId();
+        _name = cont.getName();
+        _email = cont.getEmail();
+        _mobile = cont.getMobile();
+        _phone = cont.getPhone();
+        _addressOffice = cont.getAddressOffice();
+        _addressHome = cont.getAddressHome();
+    }
 
     /**
      * Persist the current contact object
@@ -195,32 +210,32 @@ public class Contact {
             stmt = conn.createStatement();
             String sql;
             sql = "SELECT * FROM Contact where idContact = " + id;
-            ResultSet rs = stmt.executeQuery(sql);
-
             //STEP 5: Extract data from result set
-            while (rs.next()) {
-                //Retrieve by column name
-                _name = rs.getString("Name");
-                _email = rs.getString("email");
-                _mobile = rs.getString("mobile");
-                _phone = rs.getString("phone");
-                _addressOffice = rs.getString("addressoffice");
-                _addressHome = rs.getString("addresshome");
-
-                //Display values
-                System.out.println(toString());
+            try (ResultSet rs = stmt.executeQuery(sql)) {
+                //STEP 5: Extract data from result set
+                while (rs.next()) {
+                    //Retrieve by column name
+                    _id = rs.getLong("idContact");
+                    _name = rs.getString("Name");
+                    _email = rs.getString("email");
+                    _mobile = rs.getString("mobile");
+                    _phone = rs.getString("phone");
+                    _addressOffice = rs.getString("addressoffice");
+                    _addressHome = rs.getString("addresshome");
+                    
+                    //Display values
+                    System.out.println(toString());
+                }
+                //STEP 6: Clean-up environment
             }
-            //STEP 6: Clean-up environment
-            rs.close();
             stmt.close();
             conn.close();
-        } catch (SQLException se) {
+        } catch (SQLException | ClassNotFoundException se) {
             //Handle errors for JDBC
             System.out.println(se.getMessage());
-        } catch (Exception e) {
-            //Handle errors for Class.forName
-            System.out.println(e.getMessage());
-        } finally {
+        }
+        //Handle errors for Class.forName
+         finally {
             //finally block used to close resources
             try {
                 if (stmt != null) {
@@ -240,16 +255,16 @@ public class Contact {
         System.out.println("Goodbye!");
     }
 
+    @Override
     public String toString() {
-        StringBuffer fullString = new StringBuffer();
-        fullString.append("ID: " + _id );
-        fullString.append(", Name: " + _name );
-        fullString.append(", Mail: " + _email );
-        fullString.append(", Mobile: " + _mobile );
-        fullString.append(", phone: " + _phone );
-        fullString.append(", Addr_Off: " + _addressOffice );
-        fullString.append(", Addr_Home: " + _addressHome);
+        StringBuilder fullString = new StringBuilder();
+        fullString.append("ID: ").append(_id);
+        fullString.append(", Name: ").append(_name);
+        fullString.append(", Mail: ").append(_email);
+        fullString.append(", Mobile: ").append(_mobile);
+        fullString.append(", phone: ").append(_phone);
+        fullString.append(", Addr_Off: ").append(_addressOffice);
+        fullString.append(", Addr_Home: ").append(_addressHome);
         return fullString.toString();
-
     }
 }
