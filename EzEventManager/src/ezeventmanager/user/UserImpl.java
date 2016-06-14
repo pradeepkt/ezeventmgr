@@ -216,7 +216,7 @@ public abstract class UserImpl implements User {
                 + "idUser=" + _userId + ","
                 + "contactID='" + _userContact.getId() + "',"
                 + "listEvents='" + _eventLists + "',"
-                + "userRole='" + getRoleString(_role) + "'"
+                + "userRole='" + getRoleString(_role) + "',"
                 + "vendorId=" + _vendorId;
         //System.out.println("Insert query is " + insertQuery);
         return DBConnectionManager.persist(insertQuery);
