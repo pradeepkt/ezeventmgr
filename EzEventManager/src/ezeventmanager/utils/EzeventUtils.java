@@ -114,7 +114,7 @@ public class EzeventUtils {
             Class.forName(Constants.JDBC_DRIVER);
 
             //STEP 3: Open a connection
-            //System.out.println("Connecting to database...");
+            System.out.println("Connecting to database...");
             conn = DriverManager.getConnection(Constants.DB_URL, Constants.DB_USER,
                     Constants.DB_PASS);
 
@@ -163,7 +163,7 @@ public class EzeventUtils {
             return theList;
         } catch (SQLException | ClassNotFoundException se) {
             //Handle errors for JDBC
-            System.out.println(se.getMessage());
+            se.printStackTrace();
         } //Handle errors for Class.forName
         finally {
             //finally block used to close resources
