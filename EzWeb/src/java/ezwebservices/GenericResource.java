@@ -5,6 +5,8 @@
  */
 package ezwebservices;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -13,6 +15,11 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
+import ezeventmanager.*;
+import ezeventmanager.user.User;
+import ezeventmanager.utils.Contact;
+import ezeventmanager.utils.EzeventUtils;
+import java.util.ArrayList;
 
 /**
  * REST Web Service
@@ -39,28 +46,15 @@ public class GenericResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getJson() {
         //TODO return proper representation object
-        String ret = new String("{\n"
-                + "    \"glossary\": {\n"
-                + "        \"title\": \"example glossary\",\n"
-                + "		\"GlossDiv\": {\n"
-                + "            \"title\": \"S\",\n"
-                + "			\"GlossList\": {\n"
-                + "                \"GlossEntry\": {\n"
-                + "                    \"ID\": \"SGML\",\n"
-                + "					\"SortAs\": \"SGML\",\n"
-                + "					\"GlossTerm\": \"Standard Generalized Markup Language\",\n"
-                + "					\"Acronym\": \"SGML\",\n"
-                + "					\"Abbrev\": \"ISO 8879:1986\",\n"
-                + "					\"GlossDef\": {\n"
-                + "                        \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\",\n"
-                + "						\"GlossSeeAlso\": [\"GML\", \"XML\"]\n"
-                + "                    },\n"
-                + "					\"GlossSee\": \"markup\"\n"
-                + "                }\n"
-                + "            }\n"
-                + "        }\n"
-                + "    }\n"
-                + "}");
+        ArrayList<Contact> allUsers = EzeventUtils.getAllContacts();
+        if (null == allUsers)  {
+            System.out.println("It's a null");
+            return "null";
+        }
+        Gson gSonObj = new Gson();
+        
+        String ret = gSonObj.toJson(allUsers);
+
         return ret;
     }
 
